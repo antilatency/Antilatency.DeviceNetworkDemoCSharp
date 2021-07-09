@@ -4,7 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <Company>Antilatency</Company>
-        <Platforms>x86;x64;ARM32;ARM64</Platforms>
+        <Platforms>x86;x64</Platforms>
     </PropertyGroup>
     
     <ItemGroup>
