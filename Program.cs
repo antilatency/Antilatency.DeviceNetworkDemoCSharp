@@ -5,12 +5,12 @@ using Antilatency.DeviceNetwork;
 namespace DeviceNetworkDemoCSharp {
     class Program {
         static void Main(string[] args) {
-            // Load Antilatency Device Network library
+            // Load the Antilatency Device Network library
             using var deviceNetworkLibrary = Antilatency.DeviceNetwork.Library.load();
 
             var deviceNetworkLibraryVersion = deviceNetworkLibrary.getVersion();
             
-            // Create device network filter and then create network using that filter.
+            // Create a device network filter and then create a network using that filter.
             var networkFilter = GetAllUsbDevicesFilter(deviceNetworkLibrary);
             using var network = deviceNetworkLibrary.createNetwork(networkFilter);
 
@@ -35,7 +35,7 @@ namespace DeviceNetworkDemoCSharp {
                 // Get the array of currently connected nodes.
                 var nodes = network.getNodes();
 
-                // Print some information for each node. Reading the property of newly connected node starts the property task on that node,
+                // Print some information for each node. Reading the property of a newly connected node starts the property task on that node,
                 // so you will see additional increments of update id: first at node connection, second at property task start and third when property task finished.
                 foreach (var node in nodes) {
                     // Get some property values for node.
