@@ -7,10 +7,14 @@ namespace DeviceNetworkDemoCSharp {
         static void Main(string[] args) {
             // Load Antilatency Device Network library
             using var deviceNetworkLibrary = Antilatency.DeviceNetwork.Library.load();
+
+            var deviceNetworkLibraryVersion = deviceNetworkLibrary.getVersion();
             
             // Create device network filter and then create network using that filter.
             var networkFilter = GetAllUsbDevicesFilter(deviceNetworkLibrary);
             using var network = deviceNetworkLibrary.createNetwork(networkFilter);
+
+            Console.WriteLine($"Antilatency Device Network created, version: {deviceNetworkLibraryVersion}");
 
             // Each time device network is changed due to connection or disconnection of a device that matches the device filter of network,
             // or start or stop of a task on any network's device, the network update id will be incremented by 1. 
