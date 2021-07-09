@@ -16,12 +16,12 @@ namespace DeviceNetworkDemoCSharp {
 
             Console.WriteLine($"Antilatency Device Network created, version: {deviceNetworkLibraryVersion}");
 
-            // Each time device network is changed due to connection or disconnection of a device that matches the device filter of network,
-            // or start or stop of a task on any network's device, the network update id will be incremented by 1. 
+            // Each time the device network is changed due to connection or disconnection of a device that matches the device filter of the network,
+            // or start or stop of a task on any network device, the network update id is incremented by 1. 
             uint prevUpdateId = 0;
 
             while (true) {
-                // Check if network has been changed.
+                // Check if the network has been changed.
                 var currentUpdateId = network.getUpdateId();
                 if (currentUpdateId == prevUpdateId) {
                     Thread.Yield();
@@ -38,19 +38,19 @@ namespace DeviceNetworkDemoCSharp {
                 // Print some information for each node. Reading the property of a newly connected node starts the property task on that node,
                 // so you will see additional increments of update id: first at node connection, second at property task start and third when property task finished.
                 foreach (var node in nodes) {
-                    // Get some property values for node.
+                    // Get some property values for a node.
                     var hardwareName = network.nodeGetStringProperty(node, Antilatency.DeviceNetwork.Interop.Constants.HardwareNameKey);
                     var hardwareVersion = network.nodeGetStringProperty(node, Antilatency.DeviceNetwork.Interop.Constants.HardwareVersionKey);
                     var hardwareSerialNo = network.nodeGetStringProperty(node, Antilatency.DeviceNetwork.Interop.Constants.HardwareSerialNumberKey);
                     var firmwareName = network.nodeGetStringProperty(node, Antilatency.DeviceNetwork.Interop.Constants.FirmwareNameKey);
                     var firmwareVersion = network.nodeGetStringProperty(node, Antilatency.DeviceNetwork.Interop.Constants.FirmwareVersionKey);
                     
-                    // Get node's parent node. When some device (Alt, Tag, Bracer, etc.) connected to the socket, this socket becomes its parent.
-                    // Node, that is directly connected to the PC, smartphone, etc. via USB cable, will have null node handle.
+                    // Get the node's parent node. When some device (Alt, Tag, Bracer, etc.) is connected to the socket, this socket becomes its parent.
+                    // A node, that is directly connected to a PC, smartphone, etc. via a USB cable, will have null node handle as its parent.
                     var parent = network.nodeGetParent(node);
                     var parentStr = parent == Antilatency.DeviceNetwork.NodeHandle.Null ? "Root" : parent.value.ToString();
                     
-                    // Get node's status.
+                    // Get the node status.
                     var status = network.nodeGetStatus(node);
                     
                     Console.WriteLine($"Node: {node.value}");
@@ -73,7 +73,7 @@ namespace DeviceNetworkDemoCSharp {
 
         #region DeviceFilter samples
         /*
-         * Get device filter for all Antilatency USB devices.
+         * Get a device filter for all Antilatency USB devices.
          */
         private static Antilatency.DeviceNetwork.IDeviceFilter GetAllUsbDevicesFilter(Antilatency.DeviceNetwork.ILibrary deviceNetworkLibrary) {
             var result = deviceNetworkLibrary.createFilter();
@@ -82,7 +82,7 @@ namespace DeviceNetworkDemoCSharp {
         }
 
         /*
-         * Get device filter for all IP devices.
+         * Get a device filter for all IP devices.
          */
         private static Antilatency.DeviceNetwork.IDeviceFilter GetAllIpDevicesFilter(Antilatency.DeviceNetwork.ILibrary deviceNetworkLibrary) {
             var result = deviceNetworkLibrary.createFilter();
@@ -91,7 +91,7 @@ namespace DeviceNetworkDemoCSharp {
         }
 
         /*
-         * Get device filter for Antilatency USB Sockets (HMD Radio Socket and Wired USB Socket).
+         * Get a device filter for Antilatency USB Sockets (HMD Radio Socket and Wired USB Socket).
          */
         private static Antilatency.DeviceNetwork.IDeviceFilter GetAntilatencyUsbSocketDevicesFilter(Antilatency.DeviceNetwork.ILibrary deviceNetworkLibrary) {
             var result = deviceNetworkLibrary.createFilter();
