@@ -16,12 +16,14 @@
     <Choose>
         <When Condition="$(Platform) == 'x86'">
             <ItemGroup>
-                <AntilatencySdkDlls Include="AntilatencySdk\Bin\Windows\x86\*.dll"/>
+                <AntilatencySdkDlls Include="AntilatencySdk\Bin\WindowsDesktop\x86\*.dll"/>
+				<AntilatencySdkDlls Include="AntilatencySdk\Bin\Linux\x86_64\*.so"/>
             </ItemGroup>
         </When>
         <When Condition="$(Platform) == 'x64'">
             <ItemGroup>
-                <AntilatencySdkDlls Include="AntilatencySdk\Bin\Windows\x64\*.dll"/>
+                <AntilatencySdkDlls Include="AntilatencySdk\Bin\WindowsDesktop\x64\*.dll"/>
+				<AntilatencySdkDlls Include="AntilatencySdk\Bin\Linux\x86_64\*.so"/>
             </ItemGroup>
         </When>
     </Choose>
